@@ -150,8 +150,9 @@ nav ul {
   justify-content: center;
 }
 
-nav ul li {
+nav ul li a {
   color: white;
+  text-decoration: none;
   font-weight: bold;
   padding: 0.3em;
 }

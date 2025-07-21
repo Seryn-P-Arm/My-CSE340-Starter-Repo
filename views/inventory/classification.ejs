@@ -1,0 +1,13 @@
+<!-- Implementing title -->
+<% if (title) { %>
+<h1><%= title %></h1>
+<% } else {
+  res.redirect('/')
+} %>
+
+<!-- Display message -->
+ <%# messages() %>
+
+ <!-- Grid view -->
+<%- grid %>
+
