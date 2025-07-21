@@ -1,0 +1,13 @@
+<main>
+  <h1><%= title %></h1>
+
+    <div class="vehicle-detail-container">
+      <!-- Full-size vehicle image -->
+      <img src="<%= vehicle.inv_image %>" alt="Image of <%= vehicle.inv_make %> <%= vehicle.inv_model %>" />
+
+      <!-- Vehicle info -->
+      <div class="vehicle-detail-info">
+        <%- grid %>
+      </div>
+    </div>
+</main>

@@ -1,9 +1,6 @@
-<!-- Implementing title -->
-<% if (title) { %>
-<h1><%= title %></h1>
-<% } else {
-  res.redirect('/')
-} %>
-
-<!-- Error message -->
-<%- message %>
+<main class="error-page">
+  <div class="error-content">
+    <h1>Error <%= status %></h1>
+    <p><%- message %></p>
+  </div>
+</main>

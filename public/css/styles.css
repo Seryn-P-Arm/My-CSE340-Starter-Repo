@@ -44,6 +44,8 @@ header {
 h1, h2 {
   color: #2c3e50;
   margin-bottom: 0.5em;
+  font-size: 1.8rem;
+  padding: .5rem;
 }
 
 ul {
@@ -131,6 +133,104 @@ ul {
   /* border: 2px solid pink; */
 }
 
+/******* Classifications View *******/
+
+#inv-display {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  width: auto;
+  /* border: 2px solid pink; */
+}
+
+#inv-display li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem;
+  border-radius: 15px;
+  box-shadow: 5px 5px 20px 2px;
+  width: 335px;
+  height: 370px;
+  padding-bottom: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.image-wrapper {
+  width: 100%;
+  height: 200px;
+  display: block;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.image-wrapper img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 15px;  
+}
+
+#inv-display hr {
+  width: 100%;
+  border: none;
+  border-top: 4px solid #161616;
+}
+
+.namePrice {
+  text-align: center;
+  /* border: 3px solid pink; */
+  width: 100%;
+}
+
+.namePrice a {
+  font-size: 1.5rem;
+}
+
+.namePrice span {
+  font-weight: bold;
+  font-size: large;
+}
+
+/* Add these styles */
+.error-page {
+  background-color: rgb(102, 0, 0);
+  /* background-image: url("/public/images/vehicles/delorean-tn.jpg"); */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  /* min-height: 100vh; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  padding: 2rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.error-content {
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 90%;
+}
+
+.error-content h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.error-content p {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
 /******* Reviews ***************/
 .reviews h2 {
   margin-bottom: 0.5em;
@@ -139,6 +239,37 @@ ul {
 .review-list li {
   padding: 0.3em 0;
   border-bottom: 1px solid #ccc;
+}
+
+/******* Vehicle Detail *******/
+.vehicle-detail-container {
+  display: flex;
+  flex-direction: column; 
+  gap: 1.5rem;
+  margin-top: 2rem;
+  justify-items: center;
+}
+
+.vehicle-detail-container img {
+  width: 100%; 
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.vehicle-detail-info {
+  font-size: 1.1rem;
+  color: #2c3e50;
+}
+
+.vehicle-detail-info h2 {
+  margin-bottom: 1rem;
+  color: #1a5276;
+}
+
+.vehicle-detail-info p {
+  margin-bottom: 0.7rem;
+  line-height: 1.4;
 }
 
 /******* Navigation ***************/
@@ -155,6 +286,11 @@ nav ul li a {
   text-decoration: none;
   font-weight: bold;
   padding: 0.3em;
+  font-size: small;
+}
+
+nav ul li:hover {
+  background-color: #4080ad;
 }
 
 /******* Footer ***************/
@@ -173,6 +309,10 @@ footer {
 
   #tools a {
     font-size: large;
+  }
+
+  h1 {
+    font-size: 3rem;
   }
 
   h2 {
@@ -236,8 +376,43 @@ footer {
     font-size: large;
   }
 
+  #inv-display {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .image-wrapper {
+    height: 250px;
+  }
+
+  #inv-display li {
+    height: 450px;
+  }
+
   .review-list {
     font-size: large;
+  }
+
+  .vehicle-detail-container {
+    display: grid;
+    grid-template-columns: 460px 1fr; 
+    grid-gap: 2rem;
+    align-items: center;             
+    margin-top: 3rem;
+  }
+
+  .vehicle-detail-container img {
+    width: 100%;    
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .vehicle-detail-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 1.15rem;
   }
 
   nav ul {
@@ -247,5 +422,9 @@ footer {
 
   nav ul li {
     padding: 0.5em 1em;
+  }
+
+  nav ul li a {
+    font-size: larger;
   }
 }
