@@ -1,3 +1,4 @@
+console.log("🌐 DATABASE_URL in use:", process.env.DATABASE_URL)
 const { Pool } = require("pg")
 require("dotenv").config()
 /* ***************

@@ -11,7 +11,7 @@ async function getClassifications(){
     return data.rows; 
   } catch (error) {
     console.error("getClassifications error: " + error);
-    return []; // Prevent crashes if error
+    return [];
   }
 }
 
