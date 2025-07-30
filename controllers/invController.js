@@ -39,4 +39,35 @@ invCont.buildDetailPage = async function (req, res, next) {
   })
 }
 
+invCont.buildAddClassificationView = async function (req, res) {
+  res.render("inventory/add-classification", {
+    title: "Add Classification",
+    messages: req.flash("info"),
+    errors: null
+  });
+};
+
+invCont.insertClassification = async function (req, res) {
+  const { classification_name } = req.body;
+
+  const result = await invModel.addClassification(classification_name);
+
+  if (result) {
+    req.flash("info", "New classification successfully added!");
+
+    // Refresh navigation
+    const nav = await utilities.getNav(); // assuming your nav is built this way
+    res.locals.nav = nav;
+
+    res.redirect("/inv");
+  } else {
+    req.flash("error", "Failed to add classification. Try again.");
+    res.render("inventory/add-classification", {
+      title: "Add Classification",
+      messages: req.flash("error"),
+      errors: null
+    });
+  }
+};
+
 module.exports = invCont

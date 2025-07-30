@@ -102,6 +102,90 @@ ul {
   background-color: #005fa3;
 }
 
+/* Container for centering the form */
+.form-container {
+  max-width: 400px;
+  margin: 5rem auto;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.form-container input:required:invalid, input:focus:invalid {
+  border-bottom: 2px solid #ff0000;
+  border-left: 6px solid #ff0000;
+}
+
+.form-container input:required:valid {
+  border-bottom: 2px solid #0eac00;
+  border-left: 6px solid #0eac00;
+}
+
+/* Form elements */
+form label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+form input[type="email"],
+form input[type="password"] {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 0.25rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease-in-out;
+}
+
+form input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Submit button */
+form button[type="submit"] {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 1.5rem;
+  background-color: #005b9c;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+form button[type="submit"]:hover {
+  background-color: #002e5f;
+}
+
+/* Link to register */
+p a {
+  color: #005b9c;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+p a:hover {
+  text-decoration: underline;
+}
+
+/* Flash message styling */
+/* .flash-message {
+  background-color: #ffe0e0;
+  color: #b30000;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ffaaaa;
+  border-radius: 6px;
+  font-weight: bold;
+  text-align: center;
+} */
+
 /******* Upgrades Section ***************/
 .upgrades {
   display: grid;
@@ -196,7 +280,119 @@ ul {
   font-size: large;
 }
 
-/* Add these styles */
+/* Registratrion */
+
+/* ===== Register Page Scoped Styling ===== */
+.register-form-container {
+  max-width: 450px;
+  margin: 5rem auto;
+  padding: 2.5rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.register-form-container input:required:invalid, input:focus:invalid {
+  border-bottom: 2px solid #ff0000;
+  border-left: 6px solid #ff0000;
+}
+
+.register-form-container input:required:valid {
+  border-bottom: 2px solid #0eac00;
+  border-left: 6px solid #0eac00;
+}
+
+/* Form styling */
+.register-form-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Label styling */
+.register-form-container label {
+  margin-top: 1rem;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+/* Input styling */
+.register-form-container input[type="text"],
+.register-form-container input[type="email"],
+.register-form-container input[type="password"] {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 0.25rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.register-form-container input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Password toggle */
+.register-form-container .password-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.register-form-container #pswdBtn {
+  font-size: 0.9rem;
+  color: #002e5f;
+  cursor: pointer;
+}
+
+/* Requirements text */
+.register-form-container .password-requirements {
+  font-size: 0.85rem;
+  color: #888;
+  margin-top: 0.5rem;
+}
+
+/* Submit button */
+.register-form-container button[type="submit"] {
+  margin-top: 2rem;
+  padding: 0.75rem;
+  background-color: #005b9c;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.register-form-container button[type="submit"]:hover {
+  background-color: #002e5f;
+}
+
+/* Flash or helper messages */
+.register-form-container .message {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.register-form-container .message-success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.register-form-container .message-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* Error styles */
 .error-page {
   background-color: rgb(102, 0, 0);
   /* background-image: url("/public/images/vehicles/delorean-tn.jpg"); */
