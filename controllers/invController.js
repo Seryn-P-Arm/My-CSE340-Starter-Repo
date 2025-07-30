@@ -58,7 +58,7 @@ invCont.addClassification = async function (req, res) {
   let nav = await utilities.getNav()
   const { classification_name } = req.body
 
-  const addClassResult = await classificationModel.addClassification(
+  const addClassResult = await invModel.addClassification(
     classification_name
   )
 
