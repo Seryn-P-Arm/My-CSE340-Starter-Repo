@@ -46,20 +46,16 @@ async function getVehicleById(inv_id) {
   }
 }
 
-async function addClassification(classification_name) {
+/* *****************************
+*   Insert new classification
+* *************************** */
+async function addClassification(classification_name){
   try {
-    const sql = `
-      INSERT INTO classification (classification_name)
-      VALUES ($1)
-      RETURNING *;`;
-
-    const data = await pool.query(sql, [classification_name]);
-    return data.rows[0];
+    const sql = "INSERT INTO classification (classification_name) VALUES ($1, 'Client') RETURNING *"
+    return await pool.query(sql, [classification_name])
   } catch (error) {
-    console.error("DB Error:", error);
-    return null;
+    return error.message
   }
 }
-
 
 module.exports = {getClassifications, getInventoryByClassificationId, getVehicleById, addClassification};

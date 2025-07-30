@@ -6,31 +6,31 @@
 
     <form action="/account/register" method="post" class="register-form">
 
-    <label for="account_firstname">First Name</label>
-    <input type="text" id="firstname" name="account_firstname" pattern="^[A-Za-z]+$" required
-            value="<%= typeof account_firstname != 'undefined' ? account_firstname : '' %>" />
+        <label for="account_firstname">First Name</label>
+        <input type="text" id="firstname" name="account_firstname" pattern="^[A-Za-z]+$" required
+                value="<%= typeof account_firstname != 'undefined' ? account_firstname : '' %>" />
 
-    <label for="account_lastname">Last Name</label>
-    <input type="text" id="lastname" name="account_lastname" pattern="^[A-Za-z]+$" required
-            value="<%= typeof account_lastname != 'undefined' ? account_lastname : '' %>" />
+        <label for="account_lastname">Last Name</label>
+        <input type="text" id="lastname" name="account_lastname" pattern="^[A-Za-z]+$" required
+                value="<%= typeof account_lastname != 'undefined' ? account_lastname : '' %>" />
 
-    <label for="account_email">Email</label>
-    <input type="email" id="email" name="account_email" required
-            value="<%= typeof account_email != 'undefined' ? account_email : '' %>" />
+        <label for="account_email">Email</label>
+        <input type="email" id="email" name="account_email" required
+                value="<%= typeof account_email != 'undefined' ? account_email : '' %>" />
 
-    <label for="account_password">Password</label>
-    <div class="password-wrapper">
-        <input type="password" id="password" name="account_password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" required />
-        <span id="pswdBtn">Show Password</span>
-    </div>
+        <label for="account_password">Password</label>
+        <div class="password-wrapper">
+            <input type="password" id="password" name="account_password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" required />
+            <span id="pswdBtn">Show Password</span>
+        </div>
 
-    <div>
-        <p class="password-requirements">
-            Password must be at least 12 characters long, contain at least one capital letter, one number, and one special character.
-        </p>
-    </div>
-    
-    <button type="submit">Register</button>
+        <div>
+            <p class="password-requirements">
+                Password must be at least 12 characters long, contain at least one capital letter, one number, and one special character.
+            </p>
+        </div>
+        
+        <button type="submit">Register</button>
     </form>
 </main>
 

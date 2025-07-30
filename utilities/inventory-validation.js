@@ -1,27 +1,41 @@
-const { body, validationResult } = require("express-validator");
+// Validate Object
+const utilities = require(".")
+  const { body, validationResult } = require("express-validator")
+  const validate = {}
 
-const classificationRules = () => {
-  return [
+/*  **********************************
+*  Add Classification Data Validation Rules
+* ********************************* */
+validate.addClassificationRules = () => {
+return [
+    // classification name is required and must be string
     body("classification_name")
-      .trim()
-      .notEmpty().withMessage("Classification name is required.")
-      .isAlpha().withMessage("Only letters allowed. No spaces or special characters.")
-  ];
-};
+    .trim()
+    .escape()
+    .notEmpty()
+    .isLength({ min: 1 })
+    .withMessage("Please provide a classification name."), // on error this message is sent.
+]
+}
 
-const checkClassificationData = async (req, res, next) => {
-  const errors = validationResult(req);
+/* ******************************
+ * Check data and return errors or continue to add classification
+ * ***************************** */
+validate.checkClassificationData = async (req, res, next) => {
+  const { classification_name } = req.body
+  let errors = []
+  errors = validationResult(req)
   if (!errors.isEmpty()) {
-    const nav = await require("./index").getNav();
+    let nav = await utilities.getNav()
     res.render("inventory/add-classification", {
+      errors,
       title: "Add Classification",
-      messages: null,
-      errors: errors.array(),
       nav,
-    });
-    return;
+      classification_name,
+    })
+    return
   }
-  next();
-};
+  next()
+}
 
-module.exports = { classificationRules, checkClassificationData };
+module.exports = validate

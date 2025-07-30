@@ -1,13 +1,31 @@
-<%- messages() %>
+<!-- <link rel="stylesheet" href="/public/css/styles.css"> -->
+<main class="add-classification-form-container">
+    <%- messages() %>
 
-<h1>Add New Classification</h1>
-<p>Please enter a classification name (letters only, no spaces or special characters).</p>
+    <h1><%= title %></h1>
 
-<form action="/inv/add-classification" method="POST" class="add-classification-form">
-  <label for="classification_name">Classification Name:</label>
-  <input type="text" id="classification_name" name="classification_name" required
-    pattern="^[A-Za-z]+$"
-    title="Only letters allowed. No spaces, numbers, or special characters." />
+    <form action="/inventory/add-classification" method="post" class="add-classification-form">
 
-  <button type="submit">Add Classification</button>
-</form>
+        <label for="classification_name">Classification Name</label>
+        <input type="text" id="classificationName" name="classification_name" pattern="^[A-Za-z]+$" required
+                value="<%= typeof classification_name != 'undefined' ? classification_name : '' %>" />
+
+        <div>
+            <p class="classification-requirements">
+                Classification name must only contain alphabetic values.
+            </p>
+        </div>
+        
+        <button type="submit">Add Classification</button>
+    </form>
+</main>
+
+<!-- <script src="/js/script.js"></script> -->
+
+<% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>

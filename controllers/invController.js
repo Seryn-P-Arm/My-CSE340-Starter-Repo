@@ -39,35 +39,45 @@ invCont.buildDetailPage = async function (req, res, next) {
   })
 }
 
-invCont.buildAddClassificationView = async function (req, res) {
+/* ****************************************
+*  Deliver add classification form view
+* *************************************** */
+invCont.buildAddClassification = async function (req, res, next) {
+  let nav = await utilities.getNav()
   res.render("inventory/add-classification", {
     title: "Add Classification",
-    messages: req.flash("info"),
-    errors: null
-  });
-};
+    nav,
+    errors: null,
+  })
+}
 
-invCont.insertClassification = async function (req, res) {
-  const { classification_name } = req.body;
+/* ****************************************
+*  Process Newly Added Classification
+* *************************************** */
+invCont.addClassification = async function (req, res) {
+  let nav = await utilities.getNav()
+  const { classification_name } = req.body
 
-  const result = await invModel.addClassification(classification_name);
+  const addClassResult = await classificationModel.addClassification(
+    classification_name
+  )
 
-  if (result) {
-    req.flash("info", "New classification successfully added!");
-
-    // Refresh navigation
-    const nav = await utilities.getNav(); // assuming your nav is built this way
-    res.locals.nav = nav;
-
-    res.redirect("/inv");
-  } else {
-    req.flash("error", "Failed to add classification. Try again.");
-    res.render("inventory/add-classification", {
+  if (addClassResult) {
+    req.flash(
+      "notice",
+      `${classification_name} successfully added.`
+    )
+    res.status(201).render("inventory/management", {
       title: "Add Classification",
-      messages: req.flash("error"),
-      errors: null
-    });
+      nav,
+    })
+  } else {
+    req.flash("notice", "Sorry, failed to add new classification.")
+    res.status(501).render("inventory/add-classification", {
+      title: "Add Classification",
+      nav,
+    })
   }
-};
+}
 
 module.exports = invCont
