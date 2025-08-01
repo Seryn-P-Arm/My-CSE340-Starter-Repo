@@ -186,6 +186,213 @@ p a:hover {
   text-align: center;
 } */
 
+/* ===== Add Classification Page Scoped Styling ===== */
+.add-classification-form-container {
+  max-width: 450px;
+  margin: 5rem auto;
+  padding: 2.5rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.add-classification-form-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-classification-form-container label {
+  margin-top: 1rem;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.add-classification-form-container input[type="text"] {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 0.25rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.add-classification-form-container input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.add-classification-form-container input:required:invalid,
+.add-classification-form-container input:focus:invalid {
+  border-bottom: 2px solid #ff0000;
+  border-left: 6px solid #ff0000;
+}
+
+.add-classification-form-container input:required:valid {
+  border-bottom: 2px solid #0eac00;
+  border-left: 6px solid #0eac00;
+}
+
+.add-classification-form-container .classification-requirements {
+  font-size: 0.85rem;
+  color: #888;
+  margin-top: 0.5rem;
+}
+
+.add-classification-form-container button[type="submit"] {
+  margin-top: 2rem;
+  padding: 0.75rem;
+  background-color: #005b9c;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.add-classification-form-container button[type="submit"]:hover {
+  background-color: #002e5f;
+}
+
+/* ===== Inventory Management Page Styling ===== */
+.management-links {
+  list-style: none;
+  padding: 0;
+  margin: 2rem auto;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.management-links li {
+  background-color: #f5f5f5;
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.management-links li:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.management-links a {
+  text-decoration: none;
+  font-size: 1.1rem;
+  color: #005b9c;
+  font-weight: bold;
+  display: block;
+  transition: color 0.2s ease;
+}
+
+.management-links a:hover {
+  color: #002e5f;
+}
+
+main > h1 {
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 2rem;
+  color: #2c3e50;
+}
+
+/* Style your existing add-inventory form container */
+.add-inventory-form-container {
+  max-width: 450px;
+  margin: 5rem auto;
+  padding: 2.5rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Make the form a vertical flex container */
+.add-inventory-form-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Labels */
+.add-inventory-form-container label {
+  margin-top: 1rem;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+/* Inputs and textarea */
+.add-inventory-form-container input[type="text"],
+.add-inventory-form-container input[type="number"],
+.add-inventory-form-container textarea,
+.add-inventory-form-container select {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 0.25rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease-in-out;
+  font-family: inherit;
+  resize: vertical;
+}
+
+/* Focus states */
+.add-inventory-form-container input:focus,
+.add-inventory-form-container textarea:focus,
+.add-inventory-form-container select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Validation states */
+.add-inventory-form-container input:required:invalid,
+.add-inventory-form-container textarea:required:invalid,
+.add-inventory-form-container select:required:invalid,
+.add-inventory-form-container input:focus:invalid,
+.add-inventory-form-container textarea:focus:invalid,
+.add-inventory-form-container select:focus:invalid {
+  border-bottom: 2px solid #ff0000;
+  border-left: 6px solid #ff0000;
+}
+
+.add-inventory-form-container input:required:valid,
+.add-inventory-form-container textarea:required:valid,
+.add-inventory-form-container select:required:valid {
+  border-bottom: 2px solid #0eac00;
+  border-left: 6px solid #0eac00;
+}
+
+/* Submit button styling */
+.add-inventory-form-container button[type="submit"] {
+  margin-top: 2rem;
+  padding: 0.75rem;
+  background-color: #005b9c;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.add-inventory-form-container button[type="submit"]:hover {
+  background-color: #002e5f;
+}
+
+/* Validation errors list */
+.add-inventory-form-container ul.notice {
+  margin-top: 1rem;
+  padding-left: 1.2rem;
+  color: #b30000;
+  font-weight: bold;
+  list-style-type: disc;
+}
+
 /******* Upgrades Section ***************/
 .upgrades {
   display: grid;
