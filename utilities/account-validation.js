@@ -4,6 +4,49 @@ const utilities = require(".")
   const validate = {}
 
 /*  **********************************
+*  Login Data Validation Rules
+* ********************************* */
+validate.loginRules = () => {
+return [
+    // valid email is required and must exist in the DB
+    body("account_email")
+    .trim()
+    .escape()
+    .notEmpty()
+    .isEmail()
+    .normalizeEmail()
+    .withMessage("A valid email is required."),
+
+    // password is required
+    body("account_password")
+    .trim()
+    .notEmpty()
+    .withMessage("Password does not meet requirements."),
+]
+}
+
+/* ******************************
+ * Check data and return errors or continue to management
+ * ***************************** */
+validate.checkLoginData = async (req, res, next) => {
+  const { account_email, account_password } = req.body
+  let errors = []
+  errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    res.render("account/login", {
+      errors,
+      title: "Login",
+      nav,
+      account_email,
+      account_password
+    })
+    return
+  }
+  next()
+}
+
+/*  **********************************
 *  Registration Data Validation Rules
 * ********************************* */
 validate.registationRules = () => {

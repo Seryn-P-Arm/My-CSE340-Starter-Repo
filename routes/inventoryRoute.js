@@ -20,6 +20,11 @@ router.get("/management", utilities.handleErrors(invController.buildManagement))
 // Deliver add inventory view
 router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventory))
 
+// Deliver inventory management get inventory
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+
+router.get("/edit/:inv_id", utilities.handleErrors(invController.editInventoryView))
+
 // Process the registration data
 router.post(
   "/add-classification",
@@ -34,6 +39,14 @@ router.post(
   invValidate.addInventoryRules(),
   invValidate.checkInventoryData,
   utilities.handleErrors(invController.addInventory)
+)
+
+// Process the inventory update
+router.post(
+  "/update",
+  invValidate.addInventoryRules(),
+  invValidate.checkUpdateData,
+  utilities.handleErrors(invController.updateInventory) 
 )
 
 module.exports = router;

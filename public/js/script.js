@@ -1,4 +1,4 @@
-// Toggle Password for Registration
+// Toggle Password for Registration/Login
 const pswdBtn = document.querySelector("#pswdBtn")
 pswdBtn.addEventListener("click", function() {
     const pswdInput = document.getElementById("password");
