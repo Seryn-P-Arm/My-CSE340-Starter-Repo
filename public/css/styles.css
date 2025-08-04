@@ -492,6 +492,12 @@ ul.notice {
   list-style-type: disc;
 }
 
+/******* Delete Style ***************/
+#deleteForm p {
+  color: #b30000;
+  font-weight: bold;
+}
+
 /******* Upgrades Section ***************/
 .upgrades {
   display: grid;

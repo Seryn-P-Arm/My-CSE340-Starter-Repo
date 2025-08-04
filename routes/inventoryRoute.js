@@ -23,7 +23,11 @@ router.get("/add-inventory", utilities.handleErrors(invController.buildAddInvent
 // Deliver inventory management get inventory
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
 
+// Deliver Edit view
 router.get("/edit/:inv_id", utilities.handleErrors(invController.editInventoryView))
+
+// Deliver Delete view
+router.get("/delete/:inv_id", utilities.handleErrors(invController.buildDeleteView))
 
 // Process the registration data
 router.post(
@@ -48,5 +52,8 @@ router.post(
   invValidate.checkUpdateData,
   utilities.handleErrors(invController.updateInventory) 
 )
+
+// Process the Delete of an Inventory Item
+router.post("/delete", utilities.handleErrors(invController.deleteInventoryItem))
 
 module.exports = router;
