@@ -35,6 +35,19 @@ header {
   font-size: small;
 }
 
+#tools {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#tools .divider {
+  color: #ccc;
+  font-weight: bold;
+  padding: 0 0.5rem;
+}
+
+
 /******* Layout ***************/
 #wrapper {
   max-width: 1200px;
