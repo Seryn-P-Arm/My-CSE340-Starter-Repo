@@ -60,4 +60,4 @@ account_password: I@mAnEmpl0y33
 account_firstname: Manager
 account_lastname: User
 account_email: manager@340.edu
-account_password: I@mAnAdm!n1strat0r
+account_password: Manager3IsN0tGreat!

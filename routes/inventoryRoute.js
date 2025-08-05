@@ -5,55 +5,86 @@ const router = new express.Router()
 const invController = require("../controllers/invController")
 const utilities = require("../utilities")
 
-// Route to build inventory by classification view
-router.get("/type/:classificationId", invController.buildByClassificationId);
+// PUBLIC ROUTES (No auth needed)
+router.get("/type/:classificationId", invController.buildByClassificationId)
+router.get("/detail/:inv_id", invController.buildDetailPage)
 
-// Route to build detail view for a specific inventory item
-router.get("/detail/:inv_id", invController.buildDetailPage);
+// PROTECTED ROUTES — Employees/Admins only
+router.get(
+  "/add-classification",
+  utilities.checkLogin,
+  utilities.checkEmployeeOrAdmin,
+  utilities.handleErrors(invController.buildAddClassification)
+)
 
-// Deliver add classifications view
-router.get("/add-classification", utilities.handleErrors(invController.buildAddClassification))
+router.get(
+  "/management",
+  utilities.checkLogin,
+  utilities.checkEmployeeOrAdmin,
+  utilities.handleErrors(invController.buildManagement)
+)
 
-// Deliver management view
-router.get("/management", utilities.handleErrors(invController.buildManagement))
+router.get(
+  "/add-inventory",
+  utilities.checkLogin,
+  utilities.checkEmployeeOrAdmin,
+  utilities.handleErrors(invController.buildAddInventory)
+)
 
-// Deliver add inventory view
-router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventory))
+router.get(
+  "/getInventory/:classification_id",
+  utilities.checkLogin,
+  utilities.checkEmployeeOrAdmin,
+  utilities.handleErrors(invController.getInventoryJSON)
+)
 
-// Deliver inventory management get inventory
-router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+router.get(
+  "/edit/:inv_id",
+  utilities.checkLogin,
+  utilities.checkEmployeeOrAdmin,
+  utilities.handleErrors(invController.editInventoryView)
+)
 
-// Deliver Edit view
-router.get("/edit/:inv_id", utilities.handleErrors(invController.editInventoryView))
+router.get(
+  "/delete/:inv_id",
+  utilities.checkLogin,
+  utilities.checkEmployeeOrAdmin,
+  utilities.handleErrors(invController.buildDeleteView)
+)
 
-// Deliver Delete view
-router.get("/delete/:inv_id", utilities.handleErrors(invController.buildDeleteView))
-
-// Process the registration data
+// POST ROUTES
 router.post(
   "/add-classification",
+  utilities.checkLogin,
+  utilities.checkEmployeeOrAdmin,
   invValidate.addClassificationRules(),
   invValidate.checkClassificationData,
   utilities.handleErrors(invController.addClassification)
 )
 
-// Process the inventory registration data
 router.post(
   "/add-inventory",
+  utilities.checkLogin,
+  utilities.checkEmployeeOrAdmin,
   invValidate.addInventoryRules(),
   invValidate.checkInventoryData,
   utilities.handleErrors(invController.addInventory)
 )
 
-// Process the inventory update
 router.post(
   "/update",
+  utilities.checkLogin,
+  utilities.checkEmployeeOrAdmin,
   invValidate.addInventoryRules(),
   invValidate.checkUpdateData,
   utilities.handleErrors(invController.updateInventory) 
 )
 
-// Process the Delete of an Inventory Item
-router.post("/delete", utilities.handleErrors(invController.deleteInventoryItem))
+router.post(
+  "/delete",
+  utilities.checkLogin,
+  utilities.checkEmployeeOrAdmin,
+  utilities.handleErrors(invController.deleteInventoryItem)
+)
 
-module.exports = router;
+module.exports = router

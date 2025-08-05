@@ -43,6 +43,7 @@ app.use(function(req, res, next){
 })
 app.use(cookieParser())
 app.use(utilities.checkJWTToken)
+app.use(utilities.injectHeaderData)
 
 /* ***********************
  * View Engine and Templates

@@ -1,16 +1,29 @@
-<main>
-    <h1><%= title %></h1>
+<main class="account-management-container">
+  <h1><%= title %></h1>
 
-    <%- messages() %>
+  <%- messages() %>
 
-    <p>You're logged in! 🎉</p>
+  <h2>Welcome <%= accountData.account_firstname %></h2>
+
+  <p>You're logged in! 🎉</p>
+
+  <!-- Group links inside a styled list -->
+  <ul class="management-links">
+    <!-- Update Account Info link (for everyone) -->
+    <li><a href="/account/update">Update Account Information</a></li>
+
+    <!-- Inventory Management section (Admin or Employee only) -->
+    <% if (accountData.account_type === "Employee" || accountData.account_type === "Admin") { %>
+      <li><a href="/inv/management">Manage Inventory</a></li>
+    <% } %>
+  </ul>
 </main>
 
+<!-- Display validation errors if any -->
 <% if (errors) { %>
   <ul class="notice">
- <% errors.array().forEach(error => { %>
-   <li><%= error.msg %></li>
-<%  }) %>
- </ul>
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
 <% } %>
-

@@ -113,4 +113,104 @@ validate.checkRegData = async (req, res, next) => {
   next()
 }
 
+/* **********************************
+ * Account Update Validation Rules
+ * ********************************** */
+validate.updateAccountRules = () => {
+  return [
+    body("account_firstname")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("First name is required.")
+      .isAlpha()
+      .withMessage("First name must contain only letters."),
+    body("account_lastname")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("Last name is required.")
+      .isAlpha()
+      .withMessage("Last name must contain only letters."),
+    body("account_email")
+      .trim()
+      .escape()
+      .notEmpty()
+      .isEmail()
+      .normalizeEmail()
+      .withMessage("A valid email is required.")
+      .custom(async (email, { req }) => {
+        const accountId = req.body.account_id
+        const existingAccount = await require('../models/account-model').getAccountByEmail(email)
+        if (existingAccount && existingAccount.account_id != accountId) {
+          throw new Error("Email already in use.")
+        }
+        return true
+      }),
+  ]
+}
+
+/* **********************************
+ * Password Update Validation Rules
+ * ********************************** */
+validate.updatePasswordRules = () => {
+  return [
+    body("account_password")
+      .trim()
+      .notEmpty()
+      .withMessage("Password is required.")
+      .isStrongPassword({
+        minLength: 12,
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1,
+      })
+      .withMessage(
+        "Password must be at least 12 characters long and include uppercase, lowercase, number, and special character."
+      ),
+  ]
+}
+
+/* **********************************
+ * Check data and return errors or continue for account update
+ * ********************************** */
+validate.checkUpdateData = async (req, res, next) => {
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    const utilities = require(".")
+    let nav = await utilities.getNav()
+    res.render("account/update", {
+      title: "Update Account",
+      errors,
+      nav,
+      account_firstname: req.body.account_firstname,
+      account_lastname: req.body.account_lastname,
+      account_email: req.body.account_email,
+      account_id: req.body.account_id,
+    })
+    return
+  }
+  next()
+}
+
+/* **********************************
+ * Check data and return errors or continue for password update
+ * ********************************** */
+validate.checkPasswordData = async (req, res, next) => {
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    const utilities = require(".")
+    let nav = await utilities.getNav()
+    res.render("account/update", {
+      title: "Change Password",
+      errors,
+      nav,
+      account_id: req.body.account_id,
+    })
+    return
+  }
+  next()
+}
+
 module.exports = validate
