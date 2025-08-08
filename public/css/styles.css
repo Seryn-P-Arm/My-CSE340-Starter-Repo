@@ -80,9 +80,9 @@ ul {
 
 .banner {
   position: absolute;
-  top: 30%;
+  top: 90%;
   left: 2%;
-  width: 200px;
+  width: 300px;
   text-align: center;
   background-color: rgba(255, 255, 255, 0.582);
   padding: 1em;
@@ -411,6 +411,179 @@ main > h2 {
   border-color: #005b9c;
   box-shadow: 0 0 0 4px rgba(0, 91, 156, 0.2);
   outline: none;
+}
+
+/* ===== Review Form Scoped Styling ===== */
+.review-form-container {
+  max-width: 450px;
+  margin: 3rem auto 5rem auto;
+  padding: 2rem 2.5rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  font-family: inherit;
+}
+
+.review-form-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.review-form-container label {
+  margin-top: 1rem;
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+.review-form-container select,
+.review-form-container textarea {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 0.25rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.2s ease-in-out;
+  resize: vertical;
+}
+
+.review-form-container select:focus,
+.review-form-container textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.review-form-container select:required:invalid,
+.review-form-container select:focus:invalid,
+.review-form-container textarea:required:invalid,
+.review-form-container textarea:focus:invalid {
+  border-bottom: 2px solid #ff0000;
+  border-left: 6px solid #ff0000;
+}
+
+.review-form-container select:required:valid,
+.review-form-container textarea:required:valid {
+  border-bottom: 2px solid #0eac00;
+  border-left: 6px solid #0eac00;
+}
+
+.review-form-container button[type="submit"] {
+  margin-top: 2rem;
+  padding: 0.75rem;
+  background-color: #005b9c;
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  font-family: inherit;
+}
+
+.review-form-container button[type="submit"]:hover {
+  background-color: #002e5f;
+}
+
+/* ===== Reviews & Average Rating Styling ===== */
+.average-rating {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #005b9c;
+  margin: 2rem auto 1rem auto;
+  max-width: 450px;
+  text-align: center;
+  user-select: none;
+}
+
+.average-rating .stars {
+  color: #f5a623; /* golden star color */
+  margin-left: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.reviews-list {
+  max-width: 600px;
+  margin: 0 auto 3rem auto;
+  padding: 0;
+  list-style: none;
+}
+
+.reviews-list li {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.25rem;
+  font-family: inherit;
+  transition: box-shadow 0.3s ease;
+}
+
+.reviews-list li:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.reviews-list li strong {
+  color: #2c3e50;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.reviews-list li .stars {
+  color: #f5a623; /* golden star color */
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  user-select: none;
+}
+
+.reviews-list li p {
+  font-size: 1rem;
+  line-height: 1.4;
+  color: #000000;
+  margin-bottom: 0.5rem;
+  white-space: pre-wrap; /* preserves newlines if any */
+}
+
+.reviews-list li small {
+  font-size: 0.85rem;
+  color: #353535;
+  user-select: none;
+}
+
+/* No reviews message style */
+.reviews-list li.no-reviews {
+  font-style: italic;
+  color: #1a1a1a;
+  text-align: center;
+}
+
+/* Delete review form styling */
+.delete-review-form {
+  display: inline-block;
+}
+
+.delete-review-form .delete-btn {
+  background-color: rgb(102, 0, 0); /* red delete color */
+  color: #fff;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.delete-review-form .delete-btn:hover {
+  background-color: rgb(150, 2, 2);
+  transform: scale(1.05);
+}
+
+.delete-review-form .delete-btn:active {
+  background-color: rgb(150, 2, 2);
+  transform: scale(0.95);
 }
 
 /* ===== Account Management Page Styling ===== */
@@ -949,6 +1122,8 @@ input[type="text"] {
 /******* Navigation ***************/
 nav ul {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 1rem;
   background-color: #005b9c;
   padding: 0.5em;

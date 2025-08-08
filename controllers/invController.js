@@ -1,4 +1,5 @@
 const invModel = require("../models/inventory-model")
+const reviewModel = require("../models/review-model")
 const utilities = require("../utilities/")
 
 const invCont = {}
@@ -28,23 +29,33 @@ invCont.buildByClassificationId = async function (req, res, next) {
 }
 
 invCont.buildDetailPage = async function (req, res, next) {
-  const inv_id = req.params.inv_id
-  const data = await invModel.getVehicleById(inv_id)
-  let nav = await utilities.getNav()
+  try {
+    const inv_id = req.params.inv_id
+    const data = await invModel.getVehicleById(inv_id)
+    if (!data || data.length === 0) {
+      return res.status(404).send("Vehicle not found.")
+    }
+    let nav = await utilities.getNav()
+    const vehicle = data[0]
+    const grid = await utilities.buildVehicleDetailHTML([vehicle])
+    const reviewResult = await reviewModel.getVehicleReviews(inv_id)
+    const reviews = reviewResult.rows
+    const avgResult = await reviewModel.getVehicleAverageRating(inv_id)
+    const average_rating = avgResult.rows[0].average_rating || 'No ratings yet'
 
-  if (!data || data.length === 0) {
-    return res.status(404).send("Vehicle not found.")
+    res.render("./inventory/detail", {
+      title: `${vehicle.inv_year} ${vehicle.inv_make} ${vehicle.inv_model}`,
+      nav,
+      grid,
+      vehicle,
+      average_rating,
+      reviews,
+      accountData: res.locals.accountData,
+    })
+  } catch (error) {
+    console.error("Error in buildDetailPage:", error)
+    next(error)
   }
-
-  const vehicle = data[0] // Get full vehicle data
-  const grid = await utilities.buildVehicleDetailHTML([vehicle]) // wrap in array
-
-  res.render("./inventory/detail", {
-    title: `${vehicle.inv_year} ${vehicle.inv_make} ${vehicle.inv_model}`,
-    nav,
-    grid,
-    vehicle,
-  })
 }
 
 /* ****************************************

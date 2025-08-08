@@ -1,6 +1,8 @@
 <main>
   <h1><%= title %></h1>
 
+    <%- messages() %>
+
     <div class="vehicle-detail-container">
       <!-- Full-size vehicle image -->
       <img src="<%= vehicle.inv_image %>" alt="Image of <%= vehicle.inv_make %> <%= vehicle.inv_model %>" />
@@ -10,4 +12,60 @@
         <%- grid %>
       </div>
     </div>
+    <div class="review-form-container">
+      <% if (locals.loggedin) { %>
+
+      <form action="/reviews/add" method="POST">
+          
+          <input type="hidden" name="inv_id" value="<%= vehicle.inv_id %>">
+          <label for="rating">Rating:</label>
+          
+          <select name="rating" required>
+              <% for(let i=1;i<=5;i++){ %>
+                  <option value="<%= i %>"><%= i %> Star<%= i > 1 ? 's':'' %></option>
+              <% } %>
+          </select>
+
+          <label for="review_text">Your Review:</label>
+          <textarea name="review_text" rows="4" required></textarea>
+          
+          <button type="submit">Submit Review</button>
+      
+      </form>
+    </div>
+
+    <% } else { %>
+    <p><a href="/account/login">Log in</a> to leave a review.</p>
+    <% } %>
+
+    <h3 class="average-rating">Average Rating: 
+      <% if (average_rating === 'No ratings yet') { %>
+        <%= average_rating %>
+      <% } else { %>
+        <%= "⭐".repeat(Math.round(average_rating)) %> (<%= average_rating %>)
+      <% } %>
+    </h3>
+
+    <ul class="reviews-list">
+      <% if (reviews && reviews.length > 0) { %>
+        <% reviews.forEach(r => { %>
+          <li>
+            <strong><%= r.account_firstname %>:</strong> 
+            <%= "⭐".repeat(r.rating) %> 
+            <p><%= r.review_text %></p>
+            <small><%= new Date(r.created_at).toLocaleDateString() %></small>
+
+            <% if (accountData && accountData.account_id === r.account_id) { %>
+              <!-- Delete button -->
+              <form action="/reviews/<%= r.review_id %>?_method=DELETE" method="POST" class="delete-review-form" style="display:inline;">
+                <input type="hidden" name="inv_id" value="<%= vehicle.inv_id %>">
+                <button type="submit" class="delete-btn">Delete</button>
+              </form>
+            <% } %>
+          </li>
+        <% }) %>
+      <% } else { %>
+        <li class="no-reviews">No reviews yet. Be the first to review this vehicle!</li>
+      <% } %>
+    </ul>
 </main>

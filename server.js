@@ -19,6 +19,7 @@ const inventoryRoute = require("./routes/inventoryRoute")
 const utilities = require("./utilities/")
 const errorRoute = require("./routes/errorRoute")
 const bodyParser = require("body-parser")
+const methodOverride = require('method-override');
 
 /* ***********************
  * Middleware
@@ -44,6 +45,8 @@ app.use(function(req, res, next){
 app.use(cookieParser())
 app.use(utilities.checkJWTToken)
 app.use(utilities.injectHeaderData)
+app.use(methodOverride('_method'));
+
 
 /* ***********************
  * View Engine and Templates
@@ -62,6 +65,8 @@ app.get("/", utilities.handleErrors(baseController.buildHome))
 app.use("/inv", inventoryRoute)
 // Account routes
 app.use("/account", require("./routes/accountRoute"))
+// Review routes
+app.use("/reviews", require("./routes/reviewRoute"))
 // Error 500 route
 app.use("/error", errorRoute)
 // File Not Found Route - must be last route in list
