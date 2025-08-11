@@ -17,7 +17,7 @@
 
       <form action="/reviews/add" method="POST">
           
-          <input type="hidden" name="inv_id" value="<%= vehicle.inv_id %>">
+          <input type="hidden" name="inv_id" value="<%= vehicle.inv_id %>" />
           <label for="rating">Rating:</label>
           
           <select name="rating" required>
@@ -68,4 +68,13 @@
         <li class="no-reviews">No reviews yet. Be the first to review this vehicle!</li>
       <% } %>
     </ul>
+
+  <!-- Server-side validation error display -->
+  <% if (errors) { %>
+    <ul class="notice">
+      <% errors.array().forEach(error => { %>
+        <li><%= error.msg %></li>
+      <% }) %>
+    </ul>
+  <% } %>
 </main>

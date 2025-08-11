@@ -51,6 +51,7 @@ invCont.buildDetailPage = async function (req, res, next) {
       average_rating,
       reviews,
       accountData: res.locals.accountData,
+      errors: req.errors || null,
     })
   } catch (error) {
     console.error("Error in buildDetailPage:", error)
